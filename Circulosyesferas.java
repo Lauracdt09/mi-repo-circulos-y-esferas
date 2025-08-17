@@ -1,77 +1,56 @@
-//ANALISIS:
-/*
-* Entradas: cant_bananos (double), cant_manzanas (double)
-* Salidas: subt_bananos (double), subt_manzanas (double), total_sin_descuento(double),
-* descuento_aplicado (double), totalfinal (double)
-*
-*Ejemplo: 2 manzanas y 3 bananos. subt_manzanas=2*1000=2000. subt_bananos=3*800 = 2400.
-*total_sin_descuento = 4400. descuento_aplicado = 440. totalfinal =4400 - 440 = 3960
-*/
+// ANALISIS
+/* Entradas: 1, el radio proporcionado por el usuario. (double)
+* Salidas: 2. Una, el area del circulo dado ese radio (double), la otra
+* el volumen de la esfera que tenga el radio del usuario.
+* Ejemplo: Si radio = 3, area = 28,28 aprox. volumen = 113,098 aprox.
+*/ 
+
 import java.util.Scanner;
+import java.lang.Math.*;
 
-public class Fruver{
-    public static void main(String[] args){
 
-        final double precio_manzana = 1000;
-        final double precio_banano = 800;
-        final double descuento = 0.1;
-
-        Scanner escaner = new Scanner(System.in);
+public class Circulosyesferas {
     
-        //Declaración de variable 
-        System.out.println("Hola bienvenido, regalame tu nombre ");
-        String mensaje = escaner.nextLine();
-        System.out.println("Buenos dias " + mensaje);
-        System.out.println("Cantidad de manzanas:");
-        double cant_manzanas = escaner.nextDouble();
+ public static void main(String[] args) {
+
+    Scanner escaner = new Scanner(System.in);
+
+        double radio, volumen, area;
+
+         System.out.println("Hola!! Cuál es el radio del círculo? ");
+        radio = escaner.nextDouble();
         escaner.nextLine();
 
-        System.out.println("Cantidad de bananas:");
-        double cant_bananos = escaner.nextDouble();
-        escaner.nextLine();
+        area = calcular_area(radio);
+        System.out.println("El area de la esfera es: " + area);
 
-        double subt_manzanas, subt_bananos, total_sin_descuento, descuento_aplicado, total_final;
-        subt_manzanas = calcular_subtotal(cant_manzanas, precio_manzana);
-        subt_bananos = calcular_subtotal(cant_bananos, precio_banano);
-
-        System.out.println("El subtotal a pagar de manzanas es: " + subt_manzanas);
-        System.out.println("El subtotal a pagar de bananos es: " + subt_bananos);
-
-        total_sin_descuento = calcular_total_sin_descuento (subt_manzanas, subt_bananos);
-        System.out.println("El total sin descuento es: " + total_sin_descuento);
-
-        descuento_aplicado = calcular_descuento_aplicado (total_sin_descuento, descuento );
-        System.out.println("El valor del descuento aplicado es: " + descuento_aplicado);
-
-        total_final = calcular_total_final (total_sin_descuento, descuento_aplicado );
-        System.out.println("El valor total de su compra es: " + total_final);
+        volumen = calcularVolumen(radio);
+        System.out.println("El volumen de la esfera es: " + volumen);
 
 
-       
+     }
 
-        //System.out.println("Ingresaste: "+numero1);
+     /**
+      * Descripcion: El metodo calcularVolumen toda un radio r y aplica la formula
+      * del volumen de esfera para calcular dicho volumen.
+      * @param double r El radio proporcionado por el usuario.
+      * @return double El volumen de la esfera con radio r.
+      */
+     public static double calcularVolumen(double r) {
+         return Math.pow(r, 3) * (4.0/3.0) * Math.PI;
+     }
+
+     /**
+      * Descripción: El método calcular_area toma un radio r y aplica la fórmula del aréa de una esfera
+      *para calcular dicha área.
+      * @param doble r es el radio proporcionado por el usuario
+      * @return double el area de la esfera con radio r.
+      */
+      
+    public static double calcular_area(double r) {
+         return Math.PI * r * r;
+     }
     
-    }
-
-    public static double calcular_subtotal (double cantidad, double precio){
-        double subtotal = cantidad * precio;
-        return subtotal;
-    }
-
-    public static double calcular_total_sin_descuento (double subt_manzanas, double subt_bananos){
-        double total_sin_descuento = subt_manzanas + subt_bananos;
-        return total_sin_descuento;
-    }
-
-    public static double calcular_descuento_aplicado (double total_sin_descuento, double descuento){
-        double descuento_aplicado = total_sin_descuento *descuento;
-        return descuento_aplicado;
-    }
-
-    public static double calcular_total_final (double total_sin_descuento, double descuento_aplicado){
-        double total_final = total_sin_descuento - descuento_aplicado;
-        return total_final;
-    }
-
+    
 
 }
